@@ -23,16 +23,21 @@
 #include<algorithm>
 #include<fstream>
 #include<iomanip>
+#include<future>
 #include<chrono>
+#include<thread>
 
 #include<opencv2/core/core.hpp>
 
 #include<System.h>
+#include <unistd.h>
 
 using namespace std;
 
 void LoadImages(const string &strPathToSequence, vector<string> &vstrImageLeft,
                 vector<string> &vstrImageRight, vector<double> &vTimestamps);
+
+int processing(char **argv, ORB_SLAM2::System *slamPtr);
 
 int main(int argc, char **argv)
 {
@@ -41,6 +46,16 @@ int main(int argc, char **argv)
         cerr << endl << "Usage: ./stereo_kitti path_to_vocabulary path_to_settings path_to_sequence" << endl;
         return 1;
     }
+
+    // Create SLAM system. It initializes all system threads and gets ready to process frames.
+    ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::STEREO,true);
+    auto resultFuture = async(launch::async, processing, argv, &SLAM);
+    SLAM.RunViewer();
+    return resultFuture.get();
+}
+
+int processing(char **argv, ORB_SLAM2::System *slamPtr) {
+    ORB_SLAM2::System& SLAM = *slamPtr;
 
     // Retrieve paths to images
     vector<string> vstrImageLeft;
@@ -51,7 +66,7 @@ int main(int argc, char **argv)
     const int nImages = vstrImageLeft.size();
 
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
-    ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::STEREO,true);
+    //ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::STEREO,true);
 
     // Vector for tracking time statistics
     vector<float> vTimesTrack;

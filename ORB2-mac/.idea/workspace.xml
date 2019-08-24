@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="ORB_SLAM2" targetName="bin_vocabulary" />
+      <config projectName="ORB_SLAM2" targetName="stereo_euroc" />
+      <config projectName="ORB_SLAM2" targetName="rgbd_tum" />
+      <config projectName="ORB_SLAM2" targetName="mono_euroc" />
+      <config projectName="ORB_SLAM2" targetName="stereo_kitti" />
+      <config projectName="ORB_SLAM2" targetName="mono_tum" />
+      <config projectName="ORB_SLAM2" targetName="mono_kitti" />
+      <config projectName="ORB_SLAM2" targetName="ORB_SLAM2" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bedd571d-f48c-4217-abfe-709efa18a60c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Examples/Monocular/mono_euroc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/Monocular/mono_euroc.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Examples/Stereo/stereo_kitti.cc" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/Stereo/stereo_kitti.cc" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IgnoredFileRootStore">
+    <option name="generatedRoots">
+      <set>
+        <option value="$PROJECT_DIR$/.idea" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/ORB2-mac.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+        <option value="$PROJECT_DIR$/.idea/ORB2-mac.iml" />
+        <option value="$PROJECT_DIR$/.idea/misc.xml" />
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/modules.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Ps8VRJ1KIjd612CYuNyAuHkfQl" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="CMake Application.stereo_kitti_bin">
+    <configuration name="ORB_SLAM2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="ORB_SLAM2" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="bin_vocabulary" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="bin_vocabulary" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="bin_vocabulary">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mono_euroc" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="mono_euroc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="mono_euroc">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mono_euroc_bin" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/../../ORB_SLAM2_git/Vocabulary/ORBvoc.txt $PROJECT_DIR$/../../ORB_SLAM2_git-ok/Examples/Monocular/EuRoC.yaml $PROJECT_DIR$/../../../../02_share/01_slam_data/mav0/cam0/data $PROJECT_DIR$/../../ORB_SLAM2_git/Examples/Stereo/EuRoC_TimeStamps/MH02.txt" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="mono_euroc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="mono_euroc">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mono_kitti" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="mono_kitti" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="mono_kitti">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="mono_tum" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="mono_tum" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="mono_tum">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rgbd_tum" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="rgbd_tum" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="rgbd_tum">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rgbd_tum_bin" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/../../ORB_SLAM2_git/Vocabulary/ORBvoc.bin $PROJECT_DIR$/../../ORB_SLAM2_git/Examples/RGB-D/TUM1.yaml $PROJECT_DIR$/../../../../02_share/01_slam_data/rgbd_dataset_freiburg1_xyz $PROJECT_DIR$/../../ORB_SLAM2/Examples/RGB-D/associations/fr1_xyz.txt" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="rgbd_tum" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="rgbd_tum">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="stereo_euroc" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="stereo_euroc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="stereo_euroc">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="stereo_kitti" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="stereo_kitti" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="stereo_kitti">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="stereo_kitti_bin" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/../../ORB_SLAM2_git/Vocabulary/ORBvoc.bin  $PROJECT_DIR$/../../ORB_SLAM2_git-ok/Examples/Stereo/KITTI00-02.yaml $PROJECT_DIR$/../../../../02_share/01_slam_data/00" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="stereo_kitti" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="stereo_kitti">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake Application.bin_vocabulary" />
+      <item itemvalue="CMake Application.mono_euroc" />
+      <item itemvalue="CMake Application.mono_euroc_bin" />
+      <item itemvalue="CMake Application.mono_kitti" />
+      <item itemvalue="CMake Application.mono_tum" />
+      <item itemvalue="CMake Application.ORB_SLAM2" />
+      <item itemvalue="CMake Application.rgbd_tum" />
+      <item itemvalue="CMake Application.rgbd_tum_bin" />
+      <item itemvalue="CMake Application.stereo_euroc" />
+      <item itemvalue="CMake Application.stereo_kitti" />
+      <item itemvalue="CMake Application.stereo_kitti_bin" />
+    </list>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bedd571d-f48c-4217-abfe-709efa18a60c" name="Default Changelist" comment="" />
+      <created>1566651466859</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1566651466859</updated>
+      <workItem from="1566651468267" duration="470000" />
+      <workItem from="1566651954167" duration="1493000" />
+      <workItem from="1566653759520" duration="61000" />
+      <workItem from="1566653835479" duration="1485000" />
+      <workItem from="1566655422423" duration="1092000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
