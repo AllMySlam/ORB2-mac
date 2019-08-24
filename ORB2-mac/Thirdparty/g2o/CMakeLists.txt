@@ -65,6 +65,11 @@ SET(g2o_CXX_FLAGS "${g2o_CXX_FLAGS} -Wall -W")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${g2o_CXX_FLAGS}")
 SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${g2o_C_FLAGS}")
 
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -O3 -march=native -I/usr/local/Cellar/boost/1.67.0_1/include/boost")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -O3 -march=native -I/usr/local/Cellar/boost/1.67.0_1/include/boost")
+
+
 # Find Eigen3
 SET(EIGEN3_INCLUDE_DIR ${G2O_EIGEN3_INCLUDE})
 FIND_PACKAGE(Eigen3 3.1.0 REQUIRED)
