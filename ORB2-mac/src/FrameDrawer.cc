@@ -164,40 +164,41 @@ void FrameDrawer::DrawTextInfo(cv::Mat &im, int nState, cv::Mat &imText)
 
 }
 
+// 从Track对象中 更新本 类内数据==============================
 void FrameDrawer::Update(Tracking *pTracker)
 {
-    unique_lock<mutex> lock(mMutex);
-    pTracker->mImGray.copyTo(mIm);
-    mvCurrentKeys=pTracker->mCurrentFrame.mvKeys;
-    N = mvCurrentKeys.size();
+    unique_lock<mutex> lock(mMutex);// 上锁====
+    pTracker->mImGray.copyTo(mIm);// 图像
+    mvCurrentKeys=pTracker->mCurrentFrame.mvKeys;// 当前帧关键关键点
+    N = mvCurrentKeys.size();// 关键点数量
     mvbVO = vector<bool>(N,false);
     mvbMap = vector<bool>(N,false);
-    mbOnlyTracking = pTracker->mbOnlyTracking;
+    mbOnlyTracking = pTracker->mbOnlyTracking;// 模式
 
 
     if(pTracker->mLastProcessedState==Tracking::NOT_INITIALIZED)
     {
-        mvIniKeys=pTracker->mInitialFrame.mvKeys;
-        mvIniMatches=pTracker->mvIniMatches;
+        mvIniKeys=pTracker->mInitialFrame.mvKeys;// 初始化关键帧 关键点
+        mvIniMatches=pTracker->mvIniMatches;// 匹配点====
     }
-    else if(pTracker->mLastProcessedState==Tracking::OK)
+    else if(pTracker->mLastProcessedState==Tracking::OK)// 跟踪ok
     {
         for(int i=0;i<N;i++)
         {
-            MapPoint* pMP = pTracker->mCurrentFrame.mvpMapPoints[i];
+            MapPoint* pMP = pTracker->mCurrentFrame.mvpMapPoints[i];//当前帧的地图点
             if(pMP)
             {
                 if(!pTracker->mCurrentFrame.mvbOutlier[i])
                 {
-                    if(pMP->Observations()>0)
+                    if(pMP->Observations()>0)// 该地图点也被其他帧观测到，是地图点
                         mvbMap[i]=true;
                     else
-                        mvbVO[i]=true;
+                        mvbVO[i]=true;// 没有被观测到，只存在于上一帧=====
                 }
             }
         }
     }
-    mState=static_cast<int>(pTracker->mLastProcessedState);
+    mState=static_cast<int>(pTracker->mLastProcessedState);// 跟踪器状态=========
 }
 
 } //namespace ORB_SLAM

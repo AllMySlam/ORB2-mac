@@ -37,12 +37,14 @@ KeyFrameDatabase::KeyFrameDatabase (const ORBVocabulary &voc):
 }
 
 
-void KeyFrameDatabase::add(KeyFrame *pKF)
-{
+void KeyFrameDatabase::add(KeyFrame *pKF) {
     unique_lock<mutex> lock(mMutex);
 
-    for(DBoW2::BowVector::const_iterator vit= pKF->mBowVec.begin(), vend=pKF->mBowVec.end(); vit!=vend; vit++)
+    for (DBoW2::BowVector::const_iterator vit = pKF->mBowVec.begin(), vend = pKF->mBowVec.end(); vit != vend; vit++)
+    {
+        // cout << "qzc: " << vit->first << endl;
         mvInvertedFile[vit->first].push_back(pKF);
+    }
 }
 
 void KeyFrameDatabase::erase(KeyFrame* pKF)
@@ -75,28 +77,28 @@ void KeyFrameDatabase::clear()
 
 vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float minScore)
 {
-    set<KeyFrame*> spConnectedKeyFrames = pKF->GetConnectedKeyFrames();
-    list<KeyFrame*> lKFsSharingWords;
+    set<KeyFrame*> spConnectedKeyFrames = pKF->GetConnectedKeyFrames();//和当前帧关联的其它关键帧
+    list<KeyFrame*> lKFsSharingWords;// 有相同单词的关键帧
 
     // Search all keyframes that share a word with current keyframes
     // Discard keyframes connected to the query keyframe
     {
         unique_lock<mutex> lock(mMutex);
 
+        // 遍历当前帧的BoW字典所有单词
         for(DBoW2::BowVector::const_iterator vit=pKF->mBowVec.begin(), vend=pKF->mBowVec.end(); vit != vend; vit++)
         {
-            list<KeyFrame*> &lKFs =   mvInvertedFile[vit->first];
-
+            list<KeyFrame*> &lKFs =   mvInvertedFile[vit->first];//每个单词关联的所有关键帧
             for(list<KeyFrame*>::iterator lit=lKFs.begin(), lend= lKFs.end(); lit!=lend; lit++)
             {
                 KeyFrame* pKFi=*lit;
-                if(pKFi->mnLoopQuery!=pKF->mnId)
+                if(pKFi->mnLoopQuery!=pKF->mnId)//未添加到lKFsSharingWords
                 {
                     pKFi->mnLoopWords=0;
                     if(!spConnectedKeyFrames.count(pKFi))
                     {
                         pKFi->mnLoopQuery=pKF->mnId;
-                        lKFsSharingWords.push_back(pKFi);
+                        lKFsSharingWords.push_back(pKFi);// 有相同单词的关键帧
                     }
                 }
                 pKFi->mnLoopWords++;
@@ -110,7 +112,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float mi
     list<pair<float,KeyFrame*> > lScoreAndMatch;
 
     // Only compare against those keyframes that share enough words
-    int maxCommonWords=0;
+    int maxCommonWords=0;//某一帧和当前帧共享相同word最多的个数
     for(list<KeyFrame*>::iterator lit=lKFsSharingWords.begin(), lend= lKFsSharingWords.end(); lit!=lend; lit++)
     {
         if((*lit)->mnLoopWords>maxCommonWords)
@@ -118,22 +120,17 @@ vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float mi
     }
 
     int minCommonWords = maxCommonWords*0.8f;
-
     int nscores=0;
-
     // Compute similarity score. Retain the matches whose score is higher than minScore
     for(list<KeyFrame*>::iterator lit=lKFsSharingWords.begin(), lend= lKFsSharingWords.end(); lit!=lend; lit++)
     {
         KeyFrame* pKFi = *lit;
-
-        if(pKFi->mnLoopWords>minCommonWords)
+        if(pKFi->mnLoopWords>minCommonWords)//共同word最多的前20%
         {
             nscores++;
-
             float si = mpVoc->score(pKF->mBowVec,pKFi->mBowVec);
-
             pKFi->mLoopScore = si;
-            if(si>=minScore)
+            if(si>=minScore)//且分数大于最小分数minScore（由当前帧的所有公式帧计算得到， 注意现在是在遍历关键帧数据库）
                 lScoreAndMatch.push_back(make_pair(si,pKFi));
         }
     }
@@ -148,7 +145,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float mi
     for(list<pair<float,KeyFrame*> >::iterator it=lScoreAndMatch.begin(), itend=lScoreAndMatch.end(); it!=itend; it++)
     {
         KeyFrame* pKFi = it->second;
-        vector<KeyFrame*> vpNeighs = pKFi->GetBestCovisibilityKeyFrames(10);
+        vector<KeyFrame*> vpNeighs = pKFi->GetBestCovisibilityKeyFrames(10);//分数最高的前10个相邻关键帧
 
         float bestScore = it->first;
         float accScore = it->first;
@@ -173,7 +170,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float mi
     }
 
     // Return all those keyframes with a score higher than 0.75*bestScore
-    float minScoreToRetain = 0.75f*bestAccScore;
+    float minScoreToRetain = 0.75f*bestAccScore;//保留前25%
 
     set<KeyFrame*> spAlreadyAddedKF;
     vector<KeyFrame*> vpLoopCandidates;
@@ -196,17 +193,21 @@ vector<KeyFrame*> KeyFrameDatabase::DetectLoopCandidates(KeyFrame* pKF, float mi
     return vpLoopCandidates;
 }
 
+/*
+ * 在关键帧数据库中找到与当前帧相似的候选关键帧组，词典单词线性表示向量距离较近的一些关键帧
+ **/
 vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
 {
     list<KeyFrame*> lKFsSharingWords;
 
     // Search all keyframes that share a word with current frame
+    // 1 找到和当前帧，相似的关键帧
     {
         unique_lock<mutex> lock(mMutex);
-
+        //当前帧的字典，一一遍历 单词
         for(DBoW2::BowVector::const_iterator vit=F->mBowVec.begin(), vend=F->mBowVec.end(); vit != vend; vit++)
         {
-            list<KeyFrame*> &lKFs =   mvInvertedFile[vit->first];
+            list<KeyFrame*> &lKFs =   mvInvertedFile[vit->first];// 找到相似的关键帧
 
             for(list<KeyFrame*>::iterator lit=lKFs.begin(), lend= lKFs.end(); lit!=lend; lit++)
             {
@@ -214,7 +215,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
                 if(pKFi->mnRelocQuery!=F->mnId)
                 {
                     pKFi->mnRelocWords=0;
-                    pKFi->mnRelocQuery=F->mnId;
+                    pKFi->mnRelocQuery=F->mnId;// 标志为下一帧reloc需要处理的id
                     lKFsSharingWords.push_back(pKFi);
                 }
                 pKFi->mnRelocWords++;
@@ -225,25 +226,24 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
         return vector<KeyFrame*>();
 
     // Only compare against those keyframes that share enough words
+    // 仅比较有足够相似单词的帧
     int maxCommonWords=0;
     for(list<KeyFrame*>::iterator lit=lKFsSharingWords.begin(), lend= lKFsSharingWords.end(); lit!=lend; lit++)
     {
         if((*lit)->mnRelocWords>maxCommonWords)
-            maxCommonWords=(*lit)->mnRelocWords;
+            maxCommonWords=(*lit)->mnRelocWords;//找出共同单词最多的个数
     }
 
     int minCommonWords = maxCommonWords*0.8f;
-
     list<pair<float,KeyFrame*> > lScoreAndMatch;
-
     int nscores=0;
 
     // Compute similarity score.
+    // 2 计算选取关键帧的相似分数
     for(list<KeyFrame*>::iterator lit=lKFsSharingWords.begin(), lend= lKFsSharingWords.end(); lit!=lend; lit++)
     {
         KeyFrame* pKFi = *lit;
-
-        if(pKFi->mnRelocWords>minCommonWords)
+        if(pKFi->mnRelocWords>minCommonWords)//仅处理前百分之二十的共同帧
         {
             nscores++;
             float si = mpVoc->score(F->mBowVec,pKFi->mBowVec);
@@ -259,10 +259,11 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
     float bestAccScore = 0;
 
     // Lets now accumulate score by covisibility
+    // 计算候选关键帧和当前帧共视帧的个数（分数累计）
     for(list<pair<float,KeyFrame*> >::iterator it=lScoreAndMatch.begin(), itend=lScoreAndMatch.end(); it!=itend; it++)
     {
         KeyFrame* pKFi = it->second;
-        vector<KeyFrame*> vpNeighs = pKFi->GetBestCovisibilityKeyFrames(10);
+        vector<KeyFrame*> vpNeighs = pKFi->GetBestCovisibilityKeyFrames(10);// 取前几个关键帧（最大10个帧）
 
         float bestScore = it->first;
         float accScore = bestScore;
@@ -286,6 +287,7 @@ vector<KeyFrame*> KeyFrameDatabase::DetectRelocalizationCandidates(Frame *F)
             bestAccScore=accScore;
     }
 
+    // 3 取2步骤中，前百分之25的帧返回
     // Return all those keyframes with a score higher than 0.75*bestScore
     float minScoreToRetain = 0.75f*bestAccScore;
     set<KeyFrame*> spAlreadyAddedKF;

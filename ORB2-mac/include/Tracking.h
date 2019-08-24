@@ -93,12 +93,12 @@ public:
     int mSensor;
 
     // Current Frame
-    Frame mCurrentFrame;
+    Frame  mCurrentFrame;
     cv::Mat mImGray;
 
     // Initialization Variables (Monocular)
     std::vector<int> mvIniLastMatches;
-    std::vector<int> mvIniMatches;
+    std::vector<int> mvIniMatches;// 跟踪初始化时前两帧之间的匹配
     std::vector<cv::Point2f> mvbPrevMatched;
     std::vector<cv::Point3f> mvIniP3D;
     Frame mInitialFrame;

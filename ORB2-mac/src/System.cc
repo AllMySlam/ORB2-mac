@@ -245,7 +245,7 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
     // Check mode change
     {
         unique_lock<mutex> lock(mMutexMode);
-        if(mbActivateLocalizationMode)
+        if(mbActivateLocalizationMode)// 用户可以通过在图像的左侧按钮进行控制
         {
             mpLocalMapper->RequestStop();
 
@@ -255,8 +255,8 @@ cv::Mat System::TrackMonocular(const cv::Mat &im, const double &timestamp)
                 usleep(1000);
             }
 
-            mpTracker->InformOnlyTracking(true);
-            mbActivateLocalizationMode = false;
+            mpTracker->InformOnlyTracking(true);// 定位时，只跟踪
+            mbActivateLocalizationMode = false;// 防止重复执行
         }
         if(mbDeactivateLocalizationMode)
         {

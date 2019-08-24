@@ -170,7 +170,7 @@ Frame::Frame(const cv::Mat &imGray, const cv::Mat &imDepth, const double &timeSt
     AssignFeaturesToGrid();
 }
 
-
+// 单目初始化
 Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extractor,ORBVocabulary* voc, cv::Mat &K, cv::Mat &distCoef, const float &bf, const float &thDepth)
     :mpORBvocabulary(voc),mpORBextractorLeft(extractor),mpORBextractorRight(static_cast<ORBextractor*>(NULL)),
      mTimeStamp(timeStamp), mK(K.clone()),mDistCoef(distCoef.clone()), mbf(bf), mThDepth(thDepth)
@@ -195,6 +195,7 @@ Frame::Frame(const cv::Mat &imGray, const double &timeStamp, ORBextractor* extra
     if(mvKeys.empty())
         return;
 
+    // 调用OpenCV的矫正函数矫正orb提取的特征点
     UndistortKeyPoints();
 
     // Set no stereo information
@@ -234,6 +235,7 @@ void Frame::AssignFeaturesToGrid()
         for (unsigned int j=0; j<FRAME_GRID_ROWS;j++)
             mGrid[i][j].reserve(nReserve);
 
+    // 在mGrid中记录了各特征点
     for(int i=0;i<N;i++)
     {
         const cv::KeyPoint &kp = mvKeysUn[i];
@@ -252,38 +254,46 @@ void Frame::ExtractORB(int flag, const cv::Mat &im)
         (*mpORBextractorRight)(im,cv::Mat(),mvKeysRight,mDescriptorsRight);
 }
 
+// 更新相机位置姿
 void Frame::SetPose(cv::Mat Tcw)
 {
-    mTcw = Tcw.clone();
-    UpdatePoseMatrices();
+    mTcw = Tcw.clone();// 设置位姿变换矩阵到类内变量
+    // Tcw_.copyTo(mTcw);// 拷贝到类内变量w2c
+    UpdatePoseMatrices();// 更新旋转矩阵平移向量 世界中心点
 }
 
 void Frame::UpdatePoseMatrices()
-{ 
-    mRcw = mTcw.rowRange(0,3).colRange(0,3);
-    mRwc = mRcw.t();
-    mtcw = mTcw.rowRange(0,3).col(3);
-    mOw = -mRcw.t()*mtcw;
+{
+    mRcw = mTcw.rowRange(0,3).colRange(0,3);// 世界到相机旋转矩阵
+    mRwc = mRcw.t();  // t() 逆矩阵
+    mtcw = mTcw.rowRange(0,3).col(3);   // 相机到世界，在相机系下的表达
+    mOw = -mRwc*mtcw; // wTwc 世界到相机，在世界系下的表达
+    // 相机中心点在世界坐标系坐标  相机00点--->mRwc------>mtwc--------
 }
 
+// 检查地图点 是否在当前视野中
+// 相机坐标系下 点深度小于0，点不在视野中
+// 像素坐标系下 点横纵坐标在校正后的图像尺寸内
 bool Frame::isInFrustum(MapPoint *pMP, float viewingCosLimit)
 {
-    pMP->mbTrackInView = false;
+    pMP->mbTrackInView = false;// 初始设置为不在视野内
 
     // 3D in absolute coordinates
-    cv::Mat P = pMP->GetWorldPos(); 
+    cv::Mat P = pMP->GetWorldPos(); // 世界坐标系下的点
 
     // 3D in camera coordinates
-    const cv::Mat Pc = mRcw*P+mtcw;
+    // 3D点转换到相机坐标系下
+    const cv::Mat Pc = mRcw*P+mtcw; // 世界坐标系转到相机坐标系
     const float &PcX = Pc.at<float>(0);
     const float &PcY= Pc.at<float>(1);
     const float &PcZ = Pc.at<float>(2);
 
     // Check positive depth
-    if(PcZ<0.0f)
+    if(PcZ<0.0f) // 深度为负，错误
         return false;
 
     // Project in image and check it is not outside
+    // 相机像素坐标系下的点应该在校正的图像内
     const float invz = 1.0f/PcZ;
     const float u=fx*PcX*invz+cx;
     const float v=fy*PcY*invz+cy;
@@ -314,22 +324,31 @@ bool Frame::isInFrustum(MapPoint *pMP, float viewingCosLimit)
     const int nPredictedLevel = pMP->PredictScale(dist,this);
 
     // Data used by the tracking
-    pMP->mbTrackInView = true;
-    pMP->mTrackProjX = u;
-    pMP->mTrackProjXR = u - mbf*invz;
-    pMP->mTrackProjY = v;
+    pMP->mbTrackInView = true; //在视野中
+    pMP->mTrackProjX = u; // 投影点像素横坐标
+    pMP->mTrackProjXR = u - mbf*invz;// 匹配点像素横坐标 = 投影点像素横坐标 - 视差 = 投影点像素横坐标 - bf/深度
+    pMP->mTrackProjY = v;// 投影点像素纵坐标
     pMP->mnTrackScaleLevel= nPredictedLevel;
     pMP->mTrackViewCos = viewCos;
 
     return true;
 }
 
+/**
+ * @brief 找到在 以x,y为中心,边长为2r的方形内且在[minLevel, maxLevel]的特征点
+ * @param x        图像坐标u
+ * @param y        图像坐标v
+ * @param r        边长
+ * @param minLevel 最小尺度
+ * @param maxLevel 最大尺度
+ * @return         满足条件的特征点的序号
+ */
 vector<size_t> Frame::GetFeaturesInArea(const float &x, const float  &y, const float  &r, const int minLevel, const int maxLevel) const
 {
     vector<size_t> vIndices;
     vIndices.reserve(N);
 
-    const int nMinCellX = max(0,(int)floor((x-mnMinX-r)*mfGridElementWidthInv));
+    const int nMinCellX = max(0,(int)floor((x-mnMinX-r)* mfGridElementWidthInv )); //mfGridElementWidthInv=1/10
     if(nMinCellX>=FRAME_GRID_COLS)
         return vIndices;
 
@@ -337,7 +356,7 @@ vector<size_t> Frame::GetFeaturesInArea(const float &x, const float  &y, const f
     if(nMaxCellX<0)
         return vIndices;
 
-    const int nMinCellY = max(0,(int)floor((y-mnMinY-r)*mfGridElementHeightInv));
+    const int nMinCellY = max(0,(int)floor((y-mnMinY-r)*mfGridElementHeightInv));//mfGridElementHeightInv=1/10
     if(nMinCellY>=FRAME_GRID_ROWS)
         return vIndices;
 
@@ -351,7 +370,7 @@ vector<size_t> Frame::GetFeaturesInArea(const float &x, const float  &y, const f
     {
         for(int iy = nMinCellY; iy<=nMaxCellY; iy++)
         {
-            const vector<size_t> vCell = mGrid[ix][iy];
+            const vector<size_t> vCell = mGrid[ix][iy];//分了64*48个块，遍历该特征点搜索范围内的区域
             if(vCell.empty())
                 continue;
 
@@ -370,7 +389,7 @@ vector<size_t> Frame::GetFeaturesInArea(const float &x, const float  &y, const f
                 const float distx = kpUn.pt.x-x;
                 const float disty = kpUn.pt.y-y;
 
-                if(fabs(distx)<r && fabs(disty)<r)
+                if(fabs(distx)<r && fabs(disty)<r)//在范围内，则保存
                     vIndices.push_back(vCell[j]);
             }
         }
@@ -391,13 +410,13 @@ bool Frame::PosInGrid(const cv::KeyPoint &kp, int &posX, int &posY)
     return true;
 }
 
-
+// 用单词(ORB单词词典) 线性表示 描述子  相当于  一个句子 用几个单词 来表示
 void Frame::ComputeBoW()
 {
-    if(mBowVec.empty())
+    if(mBowVec.empty())//词典表示向量为空
     {
-        vector<cv::Mat> vCurrentDesc = Converter::toDescriptorVector(mDescriptors);
-        mpORBvocabulary->transform(vCurrentDesc,mBowVec,mFeatVec,4);
+        vector<cv::Mat> vCurrentDesc = Converter::toDescriptorVector(mDescriptors);//mat类型转换到 vector类型描述子向量
+        mpORBvocabulary->transform(vCurrentDesc,mBowVec,mFeatVec,4);// 计算 描述子向量 用词典线性表示的向量
     }
 }
 
@@ -437,11 +456,12 @@ void Frame::ComputeImageBounds(const cv::Mat &imLeft)
 {
     if(mDistCoef.at<float>(0)!=0.0)
     {
+        // 矫正前四个边界点：(0,0) (cols,0) (0,rows) (cols,rows)
         cv::Mat mat(4,2,CV_32F);
-        mat.at<float>(0,0)=0.0; mat.at<float>(0,1)=0.0;
-        mat.at<float>(1,0)=imLeft.cols; mat.at<float>(1,1)=0.0;
-        mat.at<float>(2,0)=0.0; mat.at<float>(2,1)=imLeft.rows;
-        mat.at<float>(3,0)=imLeft.cols; mat.at<float>(3,1)=imLeft.rows;
+        mat.at<float>(0,0)=0.0; mat.at<float>(0,1)=0.0; //左上
+        mat.at<float>(1,0)=imLeft.cols; mat.at<float>(1,1)=0.0;//右上
+        mat.at<float>(2,0)=0.0; mat.at<float>(2,1)=imLeft.rows;//左下
+        mat.at<float>(3,0)=imLeft.cols; mat.at<float>(3,1)=imLeft.rows;//右下
 
         // Undistort corners
         mat=mat.reshape(2);

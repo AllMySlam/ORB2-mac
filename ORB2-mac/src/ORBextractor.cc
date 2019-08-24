@@ -412,13 +412,31 @@ ORBextractor::ORBextractor(int _nfeatures, float _scaleFactor, int _nlevels,
     nfeatures(_nfeatures), scaleFactor(_scaleFactor), nlevels(_nlevels),
     iniThFAST(_iniThFAST), minThFAST(_minThFAST)
 {
-    mvScaleFactor.resize(nlevels);
+/*
+# ORB Extractor: Number of features per image
+    ORBextractor.nFeatures: 1000
+
+# ORB Extractor: Scale factor between levels in the scale pyramid
+    ORBextractor.scaleFactor: 1.2
+
+# ORB Extractor: Number of levels in the scale pyramid
+    ORBextractor.nLevels: 8
+
+# ORB Extractor: Fast threshold
+# Image is divided in a grid. At each cell FAST are extracted imposing a minimum response.
+# Firstly we impose iniThFAST. If no corners are detected we impose a lower value minThFAST
+# You can lower these values if your images have low contrast
+    ORBextractor.iniThFAST: 20
+    ORBextractor.minThFAST: 7
+ */
+
+    mvScaleFactor.resize(nlevels);//nlevels=8
     mvLevelSigma2.resize(nlevels);
     mvScaleFactor[0]=1.0f;
     mvLevelSigma2[0]=1.0f;
     for(int i=1; i<nlevels; i++)
     {
-        mvScaleFactor[i]=mvScaleFactor[i-1]*scaleFactor;
+        mvScaleFactor[i]=mvScaleFactor[i-1]*scaleFactor;//scaleFactor=1.2
         mvLevelSigma2[i]=mvScaleFactor[i]*mvScaleFactor[i];
     }
 
@@ -768,6 +786,7 @@ void ORBextractor::ComputeKeyPointsOctTree(vector<vector<KeyPoint> >& allKeypoin
 
     const float W = 30;
 
+    // 对每一层图像做处理
     for (int level = 0; level < nlevels; ++level)
     {
         const int minBorderX = EDGE_THRESHOLD-3;
@@ -805,6 +824,7 @@ void ORBextractor::ComputeKeyPointsOctTree(vector<vector<KeyPoint> >& allKeypoin
                 if(maxX>maxBorderX)
                     maxX = maxBorderX;
 
+                // FAST提取兴趣点, 自适应阈值
                 vector<cv::KeyPoint> vKeysCell;
                 FAST(mvImagePyramid[level].rowRange(iniY,maxY).colRange(iniX,maxX),
                      vKeysCell,iniThFAST,true);
@@ -831,6 +851,7 @@ void ORBextractor::ComputeKeyPointsOctTree(vector<vector<KeyPoint> >& allKeypoin
         vector<KeyPoint> & keypoints = allKeypoints[level];
         keypoints.reserve(nfeatures);
 
+        // 根据mnFeaturesPerLevel,即该层的兴趣点数,对特征点进行剔除
         keypoints = DistributeOctTree(vToDistributeKeys, minBorderX, maxBorderX,
                                       minBorderY, maxBorderY,mnFeaturesPerLevel[level], level);
 
@@ -1050,8 +1071,10 @@ void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPo
     assert(image.type() == CV_8UC1 );
 
     // Pre-compute the scale pyramid
+    // 构建图像金字塔
     ComputePyramid(image);
 
+    // 计算每层图像的兴趣点
     vector < vector<KeyPoint> > allKeypoints;
     ComputeKeyPointsOctTree(allKeypoints);
     //ComputeKeyPointsOld(allKeypoints);
@@ -1081,11 +1104,11 @@ void ORBextractor::operator()( InputArray _image, InputArray _mask, vector<KeyPo
         if(nkeypointsLevel==0)
             continue;
 
-        // preprocess the resized image
+        // preprocess the resized image 对图像进行高斯模糊
         Mat workingMat = mvImagePyramid[level].clone();
         GaussianBlur(workingMat, workingMat, Size(7, 7), 2, 2, BORDER_REFLECT_101);
 
-        // Compute the descriptors
+        // Compute the descriptors 计算描述子
         Mat desc = descriptors.rowRange(offset, offset + nkeypointsLevel);
         computeDescriptors(workingMat, keypoints, desc, pattern);
 
