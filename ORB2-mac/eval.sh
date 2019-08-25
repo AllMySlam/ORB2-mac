@@ -13,12 +13,12 @@ printf -v SEQ "%s/%02d" $1 $2
 
 env CPUPROFILE_FREQUENCY=200 ./Examples/Stereo/stereo_kitti Vocabulary/ORBvoc.txt $YAML_STR $SEQ
 
-pprof --pdf --nodecount=100 ./Examples/Stereo/stereo_kitti ORB_SLAM2_TOTAL.prof >> ORB_SLAM2_TOTAL_$2.pdf 
+pprof --pdf --nodecount=100 ./Examples/Stereo/stereo_kitti ORB_SLAM2_TOTAL.prof >> ORB_SLAM2_TOTAL_$2.pdf
 
 wait
 
 echo "Start to do KITTI benchmark analysis..."
 
-./evaluate_odometry ./CameraTrajectory.txt $2
+#./evaluate_odometry ./CameraTrajectory.txt $2
 
 echo "Evaluate successed!"

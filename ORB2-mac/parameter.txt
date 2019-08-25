@@ -38,3 +38,12 @@ Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/RGB-D/TUM1.yaml /
 
 /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Vocabulary/ORBvoc.txt  /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Stereo/EuRoC.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam1/data /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
 
+
+
+-----------------------------------
+----------生成函数调用关系-----------
+-----------------------------------
+
+./eval.sh /Users/aqiu/Documents/1_study/02_share/01_slam_data 00
+
+

@@ -28,6 +28,7 @@
 #include<thread>
 
 #include<opencv2/core/core.hpp>
+#include <gperftools/profiler.h>
 
 #include<System.h>
 #include <unistd.h>
@@ -47,10 +48,15 @@ int main(int argc, char **argv)
         return 1;
     }
 
+    ProfilerStart("ORB_SLAM2_TOTAL.prof");
+
     // Create SLAM system. It initializes all system threads and gets ready to process frames.
     ORB_SLAM2::System SLAM(argv[1],argv[2],ORB_SLAM2::System::STEREO,true);
     auto resultFuture = async(launch::async, processing, argv, &SLAM);
     SLAM.RunViewer();
+
+    ProfilerStop();
+
     return resultFuture.get();
 }
 

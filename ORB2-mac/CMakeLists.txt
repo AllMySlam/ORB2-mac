@@ -9,8 +9,8 @@ ENDIF()
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -O3 -march=native")
 
 SET(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall  -march=native ")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall   -march=native")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -Wall -fno-pie  -O3 -march=native ")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fno-pie  -O3  -march=native")
 MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
 
 
@@ -48,6 +48,7 @@ ${PROJECT_SOURCE_DIR}
 ${PROJECT_SOURCE_DIR}/include
 ${EIGEN3_INCLUDE_DIR}
 ${Pangolin_INCLUDE_DIRS}
+/usr/local/Cellar/gperftools/HEAD-fe62a0b/include
 )
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
@@ -81,6 +82,7 @@ ${Pangolin_LIBRARIES}
 #${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.so
 ${PROJECT_SOURCE_DIR}/Thirdparty/DBoW2/lib/libDBoW2.dylib
 ${PROJECT_SOURCE_DIR}/Thirdparty/g2o/lib/libg2o.dylib
+/usr/local/lib/libprofiler.dylib
 )
 
 # Build examples
