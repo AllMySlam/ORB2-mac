@@ -2,14 +2,14 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="ORB_SLAM2" targetName="bin_vocabulary" />
-      <config projectName="ORB_SLAM2" targetName="stereo_euroc" />
-      <config projectName="ORB_SLAM2" targetName="rgbd_tum" />
-      <config projectName="ORB_SLAM2" targetName="mono_euroc" />
       <config projectName="ORB_SLAM2" targetName="stereo_kitti" />
+      <config projectName="ORB_SLAM2" targetName="stereo_euroc" />
+      <config projectName="ORB_SLAM2" targetName="bin_vocabulary" />
       <config projectName="ORB_SLAM2" targetName="mono_tum" />
+      <config projectName="ORB_SLAM2" targetName="rgbd_tum" />
       <config projectName="ORB_SLAM2" targetName="mono_kitti" />
       <config projectName="ORB_SLAM2" targetName="ORB_SLAM2" />
+      <config projectName="ORB_SLAM2" targetName="mono_euroc" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -20,9 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bedd571d-f48c-4217-abfe-709efa18a60c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/Examples/Monocular/mono_euroc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/Monocular/mono_euroc.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Examples/Stereo/stereo_kitti.cc" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/Stereo/stereo_kitti.cc" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -64,18 +62,6 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="CMake Application.stereo_kitti_bin">
     <configuration name="ORB_SLAM2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="ORB_SLAM2" CONFIG_NAME="Debug">
