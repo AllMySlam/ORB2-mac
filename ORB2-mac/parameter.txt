@@ -1,42 +1,42 @@
 RGB-D：
 
-/Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/RGB-D/TUM1.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/rgbd_dataset_freiburg1_xyz /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2/Examples/RGB-D/associations/fr1_xyz.txt
+/Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/RGB-D/TUM1.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/rgbd_dataset_freiburg1_xyz /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/RGB-D/associations/fr1_xyz.txt
 
 虚拟机RGB-D
-/media/psf/Home／Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt /Users/aqiu/
-Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/RGB-D/TUM1.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/rgbd_dataset_freiburg1_xyz /media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2/Examples/RGB-D/associations/fr1_xyz.txt
+/media/psf/Home／Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt /Users/aqiu/
+Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/RGB-D/TUM1.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/rgbd_dataset_freiburg1_xyz /media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/RGB-D/associations/fr1_xyz.txt
 
 双目
-/Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt  /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/Stereo/EuRoC.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam1/data /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
+/Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt  /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/EuRoC.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam1/data /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
 
 虚拟机双目
-/media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt  /media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/Stereo/EuRoC.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /media/psf/Home/Documents/1_study/02_share/01_slam_data/mav0/cam1/data /media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
+/media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt  /media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/EuRoC.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /media/psf/Home/Documents/1_study/02_share/01_slam_data/mav0/cam1/data /media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
 
 
 双目
-/Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt  /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Stereo/KITTI00-02.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/00
+/Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt  /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/KITTI00-02.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/00
 
 虚拟机双目
-/media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt  /media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Stereo/KITTI00-02.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/00
+/media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt  /media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/KITTI00-02.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/00
 
 单目
 
-/Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Monocular/EuRoC.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
+/Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Monocular/EuRoC.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
 
 虚拟机单目：
-/media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt /media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Monocular/EuRoC.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
+/media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt /media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Monocular/EuRoC.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
 
 
 -------------------
 
-/media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Vocabulary/ORBvoc.txt  /media/psf/Home/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Stereo/KITTI00-02.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/00
+/media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt  /media/psf/Home/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/KITTI00-02.yaml /media/psf/Home/Documents/1_study/02_share/01_slam_data/00
 
 ---------------
 
 
 
 
-/Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Vocabulary/ORBvoc.txt  /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Stereo/EuRoC.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam1/data /Users/aqiu/Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git-ok/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
+/Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Vocabulary/ORBvoc.txt  /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/EuRoC.yaml /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam0/data /Users/aqiu/Documents/1_study/02_share/01_slam_data/mav0/cam1/data /Users/aqiu/Documents/1_study/10_workspace/02_clion/qzc_slam/orbSlam2-mac/ORB2-mac/Examples/Stereo/EuRoC_TimeStamps/MH02.txt
 
 
 
@@ -45,5 +45,3 @@ Documents/1_study/10_workspace/02_clion/ORB_SLAM2_git/Examples/RGB-D/TUM1.yaml /
 -----------------------------------
 
 ./eval.sh /Users/aqiu/Documents/1_study/02_share/01_slam_data 00
-
-
