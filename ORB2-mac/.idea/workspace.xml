@@ -2,14 +2,14 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
-      <config projectName="ORB_SLAM2" targetName="stereo_kitti" />
-      <config projectName="ORB_SLAM2" targetName="stereo_euroc" />
       <config projectName="ORB_SLAM2" targetName="bin_vocabulary" />
-      <config projectName="ORB_SLAM2" targetName="mono_tum" />
+      <config projectName="ORB_SLAM2" targetName="stereo_euroc" />
       <config projectName="ORB_SLAM2" targetName="rgbd_tum" />
+      <config projectName="ORB_SLAM2" targetName="mono_euroc" />
+      <config projectName="ORB_SLAM2" targetName="stereo_kitti" />
+      <config projectName="ORB_SLAM2" targetName="mono_tum" />
       <config projectName="ORB_SLAM2" targetName="mono_kitti" />
       <config projectName="ORB_SLAM2" targetName="ORB_SLAM2" />
-      <config projectName="ORB_SLAM2" targetName="mono_euroc" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -19,7 +19,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bedd571d-f48c-4217-abfe-709efa18a60c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Examples/Monocular/mono_euroc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/Examples/Monocular/mono_euroc.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tools/bin_vocabulary" beforeDir="false" afterPath="$PROJECT_DIR$/tools/bin_vocabulary" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +57,12 @@
   </component>
   <component name="ProjectId" id="1Ps8VRJ1KIjd612CYuNyAuHkfQl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -63,7 +70,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
-  <component name="RunManager" selected="CMake Application.stereo_kitti_bin">
+  <component name="RunManager" selected="CMake Application.mono_euroc_bin">
     <configuration name="ORB_SLAM2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="ORB_SLAM2" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -79,7 +86,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="mono_euroc_bin" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/../../ORB_SLAM2_git/Vocabulary/ORBvoc.txt $PROJECT_DIR$/../../ORB_SLAM2_git-ok/Examples/Monocular/EuRoC.yaml $PROJECT_DIR$/../../../../02_share/01_slam_data/mav0/cam0/data $PROJECT_DIR$/../../ORB_SLAM2_git/Examples/Stereo/EuRoC_TimeStamps/MH02.txt" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="mono_euroc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="mono_euroc">
+    <configuration name="mono_euroc_bin" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="$PROJECT_DIR$/Vocabulary/ORBvoc.txt $PROJECT_DIR$/Examples/Monocular/EuRoC.yaml $PROJECT_DIR$/../../../../../../02_share/01_slam_data/mav0/cam0/data $PROJECT_DIR$/Examples/Stereo/EuRoC_TimeStamps/MH02.txt " PASS_PARENT_ENVS_2="true" PROJECT_NAME="ORB_SLAM2" TARGET_NAME="mono_euroc" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ORB_SLAM2" RUN_TARGET_NAME="mono_euroc">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -148,6 +155,8 @@
       <workItem from="1566653759520" duration="61000" />
       <workItem from="1566653835479" duration="1485000" />
       <workItem from="1566655422423" duration="1092000" />
+      <workItem from="1600266131605" duration="845000" />
+      <workItem from="1600267051547" duration="1043000" />
     </task>
     <servers />
   </component>
@@ -166,5 +175,31 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="184" y="110" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600267885679">
+      <screen x="0" y="0" width="1440" height="896" />
+    </state>
+    <state x="184" y="110" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.896@0.0.1440.896" timestamp="1600267885679" />
+    <state width="1396" height="189" key="GridCell.Tab.0.bottom" timestamp="1600267887655">
+      <screen x="0" y="0" width="1440" height="896" />
+    </state>
+    <state width="1396" height="189" key="GridCell.Tab.0.bottom/0.0.1440.896@0.0.1440.896" timestamp="1600267887655" />
+    <state width="1396" height="189" key="GridCell.Tab.0.center" timestamp="1600267887654">
+      <screen x="0" y="0" width="1440" height="896" />
+    </state>
+    <state width="1396" height="189" key="GridCell.Tab.0.center/0.0.1440.896@0.0.1440.896" timestamp="1600267887654" />
+    <state width="1396" height="189" key="GridCell.Tab.0.left" timestamp="1600267887654">
+      <screen x="0" y="0" width="1440" height="896" />
+    </state>
+    <state width="1396" height="189" key="GridCell.Tab.0.left/0.0.1440.896@0.0.1440.896" timestamp="1600267887654" />
+    <state width="1396" height="189" key="GridCell.Tab.0.right" timestamp="1600267887655">
+      <screen x="0" y="0" width="1440" height="896" />
+    </state>
+    <state width="1396" height="189" key="GridCell.Tab.0.right/0.0.1440.896@0.0.1440.896" timestamp="1600267887655" />
+    <state x="386" y="205" width="667" height="486" key="find.popup" timestamp="1600266957038">
+      <screen x="0" y="0" width="1440" height="896" />
+    </state>
+    <state x="386" y="205" width="667" height="486" key="find.popup/0.0.1440.896@0.0.1440.896" timestamp="1600266957038" />
   </component>
 </project>
